@@ -3,21 +3,21 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSvZB3lw8Z3d4vQF8Ntr9udwVWHDE3c-zYYTiJi1QRLzCNHmjaeU8MBmxMrTqR7iqBbnFJOrXgPDXy/pub?output=csv", {cache: "no-cache"});
+    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQx8pw5IL9PV7T4ehkqiMOU8zy752K4QFL4SrLgN3SOfjO9c0tMYXsZDH7cnfgk-lOc93mhMAeA1pqP/pub?output=csv", {cache: "no-cache"});
     const csv = await response.text();
 
     const unit: Units[] = csv
       .split('\n')
       .slice(2)
       .map((row) => {
-        const [id, uf, piso, tipologia, ambientes, banos, precio, parrilla, cochera, balcon, m2Cubiertos, m2Descubiertos, m2Totales, raxo, vendido, kuula, imagenIndexSelection, imagenIndexSelectionMobile, documentacion] = row.split(",");
+        const [id, uf, piso, tipologia, ambientes, baños, precio, parrilla, cochera, balcon, m2Cubiertos, m2Descubiertos, m2Totales, raxo, vendido, kuula, imagenIndexSelection, imagenIndexSelectionMobile] = row.split(",");
         return {
           id: parseInt(id),
             uf: parseInt(uf),
             piso: parseInt(piso),
             tipologia: tipologia.trim().toLowerCase(),
             ambientes: parseInt(ambientes),
-            baños: parseInt(banos),
+            baños: parseInt(baños),
             precio: parseInt(precio),
             parrilla: parrilla.trim().toLowerCase(),
             cochera: cochera.trim().toLowerCase(),
@@ -30,7 +30,6 @@ export async function GET() {
             kuula: kuula.trim(),
             imagenIndexSelection: imagenIndexSelection.trim(),
             imagenIndexSelectionMobile: imagenIndexSelectionMobile.trim(),
-            documentacion: documentacion.trim(),
         }
       });
       

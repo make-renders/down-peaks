@@ -46,7 +46,7 @@ export default function Home() {
         <section className="absolute flex h-screen w-full max-w-[1440px] animate-fade-in-right flex-col items-start justify-end gap-10 p-6 animate-delay-[2400ms] animate-duration-800 md:px-12 md:pb-32 lg:px-[120px]">
           <div className="max-w-xs space-y-6 md:max-w-full">
             <h1 className="text-4xl font-bold md:text-7xl">
-              Pedraza <br />
+              Down Peaks <br />
             </h1>
             <div className="w-full whitespace-normal break-words md:max-w-2xl">
               <span className="text-2xl md:text-5xl md:font-semibold">

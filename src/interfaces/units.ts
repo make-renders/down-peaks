@@ -17,6 +17,5 @@ export interface Units {
   kuula:               string;
   imagenIndexSelection:        string;
   imagenIndexSelectionMobile:  string;
-  documentacion:       string;
 }
 
