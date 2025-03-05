@@ -1,0 +1,36 @@
+{
+  "peacock.color": "#11142F",
+  "peacock.affectTitleBar": true,
+  "peacock.affectStatusBar": true,
+  "peacock.affectTabActiveBorder": false,
+  "peacock.affectSashHover": false,
+  "peacock.affectPanelBorder": false,
+  "peacock.affectActivityBar": false,
+  "workbench.colorCustomizations": {
+    "commandCenter.border": "#e7e7e799",
+    "sideBar.border": "#1f2454",
+    "statusBar.background": "#11142f",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#1f2454",
+    "statusBarItem.remoteBackground": "#11142f",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#11142f",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#11142f99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "cSpell.words": [
+    "balcon",
+    "banos",
+    "depts",
+    "documentacion",
+    "kuula",
+    "Lucila",
+    "Nuñez",
+    "raxo",
+    "rectangulo",
+    "Sonner",
+    "tipologia",
+    "zustand"
+  ]
+}
