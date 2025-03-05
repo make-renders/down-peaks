@@ -16,7 +16,7 @@ export const formPostSheetsStore = create<FormState>((set) => ({
     formData.append('message', data.message);
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbx_Bk75uPEwg0ffMi4GgCU0sf1J_h9QUqCg4FyWXFSnTYgXXPKwoLVwKlAdAcvtGtyl7g/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxEpYyXK5edgTPantLwV90bWm_Ik8Zg9GaJAVP2tjbrx5bUFKfy_9vMt2ygXLbZbufl7g/exec', {
         method: 'POST',
         body: formData,
       });
