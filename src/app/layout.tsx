@@ -14,7 +14,7 @@ import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Space3D",
+  title: "Twin Peaks",
   description: "By Make Renders",
 };
 
@@ -41,9 +41,9 @@ export default function RootLayout({
           <SonnerToaster />
         </ThemeProvider>
       </body>
-      <GoogleAnalytics
+      {/* <GoogleAnalytics
         gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ""}
-      />
+      /> */}
     </html>
   );
 }
