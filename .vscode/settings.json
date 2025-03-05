@@ -1,5 +1,5 @@
 {
-  "peacock.color": "#11142F",
+  "peacock.color": "#1A2E05",
   "peacock.affectTitleBar": true,
   "peacock.affectStatusBar": true,
   "peacock.affectTabActiveBorder": false,
@@ -8,15 +8,15 @@
   "peacock.affectActivityBar": false,
   "workbench.colorCustomizations": {
     "commandCenter.border": "#e7e7e799",
-    "sideBar.border": "#1f2454",
-    "statusBar.background": "#11142f",
+    "sideBar.border": "#345c0a",
+    "statusBar.background": "#1a2e05",
     "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#1f2454",
-    "statusBarItem.remoteBackground": "#11142f",
+    "statusBarItem.hoverBackground": "#345c0a",
+    "statusBarItem.remoteBackground": "#1a2e05",
     "statusBarItem.remoteForeground": "#e7e7e7",
-    "titleBar.activeBackground": "#11142f",
+    "titleBar.activeBackground": "#1a2e05",
     "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#11142f99",
+    "titleBar.inactiveBackground": "#1a2e0599",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "cSpell.words": [
