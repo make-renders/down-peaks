@@ -15,16 +15,26 @@ import { MainUnitsDrawer } from "@/components/drawer-units/main-units-drawer";
 
 import { UnitsKuulaId } from "@/components/units-kuula-id";
 
-//import VideoTransitionImage from "@/components/video-components/video-transition-image";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+import VideoTransitionImage from "@/components/video-components/video-transition-image";
 
 export default function Page() {
   const selectedUnit = useUnitsByIdStore((state) => state.selectedUnit);
 
   const isMobile = useIsMobile();
 
-  /*   const videoIndex = "/videos/home/an-index.mp4";
+  const videoIndex = "/videos/home/an-index.mp4";
   const imageBgIndex = "/images/bg-image/index.jpg";
-  const videoIndexMobile = "/videos/home/an-index-vertical.mp4"; */
+  const videoIndexMobile = "/videos/home/an-index-vertical.mp4";
   //const imageBgIndexMobile = "/images/bg-image/index-vertical.png";
 
   const filteredUnits = useUnitsStore(
@@ -49,15 +59,22 @@ export default function Page() {
           </>
         ) : (
           <>
-            {/* <Suspense>
-              <VideoTransitionImage
-                video={videoIndex} image={imageBgIndex}
-              />
-            </Suspense> */}
-            <section className="absolute top-5 z-10 flex h-[740px] w-full max-w-[1440px] flex-col justify-end p-3">
+            <Suspense>
+              <VideoTransitionImage video={videoIndex} image={imageBgIndex} />
+            </Suspense>
+            <section className="absolute left-5 top-5 z-50 flex h-[740px] w-auto max-w-[1440px] flex-col justify-end p-3">
               <MainSidebar />
             </section>
-            <section className="absolute -top-1 flex h-[740px] w-full max-w-[1440px] justify-end p-3">
+            {/* Units Kuula ID */}
+            {selectedUnit && (
+              <section className="absolute -top-1 flex h-[740px] w-full max-w-[1440px] justify-end p-3">
+                <div className="flex justify-end pl-3 md:w-[67%] lg:w-[75%] lg:pl-5 xl:w-[79%]">
+                  <UnitsKuulaId />
+                </div>
+              </section>
+            )}
+
+            {/* <section className="absolute -top-1 flex h-[740px] w-full max-w-[1440px] justify-end p-3">
               <div
                 className={cn(
                   "flex justify-end pl-3 md:w-[67%] lg:w-[75%] lg:pl-5 xl:w-[79%]",
@@ -66,77 +83,101 @@ export default function Page() {
               >
                 {selectedUnit === null ? "" : <UnitsKuulaId />}
               </div>
-            </section>
+            </section> */}
           </>
         )}
 
         {/* SVG Section */}
-        <svg
-          id="Capa_4"
-          data-name="Capa 4"
-          viewBox="0 0 1920 1080"
-          className="absolute inset-0 h-full w-full animate-blurred-fade-in animate-duration-400"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <defs>
-            <filter
-              id="neon-filter-simplified"
-              x="-50%"
-              y="-50%"
-              width="200%"
-              height="200%"
-              filterUnits="userSpaceOnUse"
-            >
-              <feFlood floodColor="#F0F2FF" result="flood" />
-              <feComposite
-                in="flood"
-                in2="SourceGraphic"
-                operator="in"
-                result="coloredSource"
-              />
-              <feGaussianBlur
-                in="coloredSource"
-                stdDeviation="4"
-                result="blur"
-              />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
+        <TooltipProvider>
+          <svg
+            viewBox="0 0 1920 1080"
+            preserveAspectRatio="xMidYMid slice"
+            className="absolute inset-0 h-full w-full animate-blurred-fade-in animate-delay-300 animate-duration-400"
+          >
+            <defs>
+              <filter
+                id="neon-filter-simplified"
+                x="-50%"
+                y="-50%"
+                width="200%"
+                height="200%"
+                filterUnits="userSpaceOnUse"
+              >
+                <feFlood floodColor="#F0F2FF" result="flood" />
+                <feComposite
+                  in="flood"
+                  in2="SourceGraphic"
+                  operator="in"
+                  result="coloredSource"
+                />
+                <feGaussianBlur
+                  in="coloredSource"
+                  stdDeviation="4"
+                  result="blur"
+                />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
 
-          <rect
-            id="rectangulo"
-            width="1920"
-            height="1080"
-            style={{ fill: "none" }}
-          />
-          {filteredUnits.map((unit, index) => {
-            const pos = svgCirclePositions[unit.id];
-            if (!pos) return null;
-            const isHovered = visibleUnit === unit.id;
-            return (
-              <circle
-                key={unit.id}
-                id={unit.id.toString()}
-                data-name={`${index + 1}`}
-                cx={pos.cx}
-                cy={pos.cy}
-                r={10.67}
-                style={{
-                  fill: isHovered ? "#131540" : "none",
-                  filter: "url(#neon-filter-simplified)",
-                  stroke: isHovered ? "#131540" : "#fff",
-                  strokeMiterlimit: 10,
-                  strokeWidth: "3px",
-                  strokeOpacity: 1,
-                  animation: "fadeIn .5s ease-in-out forwards",
-                }}
-              />
-            );
-          })}
-        </svg>
+            {/* se puede borrar, parece no hacer nada */}
+            <rect
+              id="rectangulo"
+              width="1920"
+              height="1080"
+              style={{ fill: "none" }}
+            />
+            {filteredUnits.map((unit, index) => {
+              const pos = svgCirclePositions[unit.id];
+              if (!pos) return null;
+              const isHovered = visibleUnit === unit.id;
+
+              return (
+                <Tooltip key={unit.id} delayDuration={150}>
+                  <TooltipTrigger asChild className="cursor-pointer">
+                    <circle
+                      key={unit.id}
+                      id={unit.id.toString()}
+                      data-name={`${index + 1}`}
+                      cx={pos.cx}
+                      cy={pos.cy}
+                      r={10.67}
+                      style={{
+                        fill: isHovered ? "#fff" : "#131540",
+                        filter: "url(#neon-filter-simplified)",
+                        stroke: isHovered ? "#131540" : "#fff",
+                        strokeMiterlimit: 10,
+                        strokeWidth: "3px",
+                        strokeOpacity: 1,
+                        animation: "fadeIn .5s ease-in-out forwards",
+                      }}
+                    />
+                  </TooltipTrigger>
+
+                  <TooltipContent
+                    side="right"
+                    className="animate-blurred-fade-in bg-transparent animate-duration-500"
+                  >
+                    <Card className="">
+                      <CardHeader>
+                        <CardTitle className="text-base">{unit.id}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2">
+                          <p>{unit.precio}</p>
+                          <p>{unit.tipologia}</p>
+                        </div>
+                        <p>Distancia {unit.piso}</p>
+                      </CardContent>
+                    </Card>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </svg>
+        </TooltipProvider>
       </div>
     </main>
   );
