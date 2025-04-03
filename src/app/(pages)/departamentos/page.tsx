@@ -27,11 +27,11 @@ export default function Page() {
   const videoIndexMobile = "/videos/home/an-index-vertical.mp4"; */
   //const imageBgIndexMobile = "/images/bg-image/index-vertical.png";
 
-  //const visible = useUnitsSelectionVisibleStore((state) => state.visible);
-
   const filteredUnits = useUnitsStore(
     useShallow((state) => state.filteredUnitsData),
   );
+
+  const visibleUnit = useUnitsSelectionVisibleStore((state) => state.visible);
 
   return (
     <main className="h-screen w-full">
@@ -80,49 +80,32 @@ export default function Page() {
         >
           <defs>
             <filter
-              id="neon-filter-internal"
+              id="neon-filter-simplified"
               x="-50%"
               y="-50%"
               width="200%"
               height="200%"
               filterUnits="userSpaceOnUse"
             >
-              {/* Inner Glow */}
-              <feFlood
-                floodColor="#ffffff"
-                floodOpacity="1"
-                result="baseColor"
+              <feFlood floodColor="#F0F2FF" result="flood" />
+              <feComposite
+                in="flood"
+                in2="SourceGraphic"
+                operator="in"
+                result="coloredSource"
               />
-              <feComposite in="baseColor" in2="SourceGraphic" operator="in" />
-              <feGaussianBlur stdDeviation="3" result="innerGlow" />
-
-              {/* Mid Glow */}
-              <feFlood
-                floodColor="#ff8740"
-                floodOpacity="0.8"
-                result="midColor"
+              <feGaussianBlur
+                in="coloredSource"
+                stdDeviation="4"
+                result="blur"
               />
-              <feComposite in="midColor" in2="SourceGraphic" operator="in" />
-              <feGaussianBlur stdDeviation="1" result="midGlow" />
-
-              {/* Outer Glow */}
-              <feFlood
-                floodColor="#ff4c00"
-                floodOpacity="0.6"
-                result="outerColor"
-              />
-              <feComposite in="outerColor" in2="SourceGraphic" operator="in" />
-              <feGaussianBlur stdDeviation="3" result="outerGlow" />
-
-              {/* Merge glows internally */}
               <feMerge>
-                <feMergeNode in="outerGlow" />
-                <feMergeNode in="midGlow" />
-                <feMergeNode in="innerGlow" />
+                <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
           </defs>
+
           <rect
             id="rectangulo"
             width="1920"
@@ -132,6 +115,7 @@ export default function Page() {
           {filteredUnits.map((unit, index) => {
             const pos = svgCirclePositions[unit.id];
             if (!pos) return null;
+            const isHovered = visibleUnit === unit.id;
             return (
               <circle
                 key={unit.id}
@@ -141,11 +125,11 @@ export default function Page() {
                 cy={pos.cy}
                 r={10.67}
                 style={{
-                  fill: "none",
-                  filter: "url(#neon-filter-internal)",
-                  stroke: "#fff",
+                  fill: isHovered ? "#131540" : "none",
+                  filter: "url(#neon-filter-simplified)",
+                  stroke: isHovered ? "#131540" : "#fff",
                   strokeMiterlimit: 10,
-                  strokeWidth: "4px",
+                  strokeWidth: "3px",
                   strokeOpacity: 1,
                   animation: "fadeIn .5s ease-in-out forwards",
                 }}

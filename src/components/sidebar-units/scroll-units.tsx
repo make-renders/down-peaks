@@ -44,8 +44,9 @@ export const ScrollUnits = () => {
     (state) => state.clearVisible,
   );
 
-  const handleHoverEnter = (index: number) => {
-    setVisible(index);
+  const handleHoverEnter = (unitId: number) => {
+    setVisible(unitId);
+    // console.log(index);
   };
   const handleHoverLeave = () => {
     clearVisible();
@@ -109,7 +110,7 @@ export const ScrollUnits = () => {
                   /* Unidades disponibles */
                   <div
                     /* hover para el depto selection */
-                    onMouseEnter={() => handleHoverEnter(index)}
+                    onMouseEnter={() => handleHoverEnter(unit.id)}
                     onMouseLeave={() => handleHoverLeave()}
                     onClick={() => handleClickUnit(unit.id)}
                     className="w-full cursor-pointer"
