@@ -44,8 +44,9 @@ export const ScrollUnits = () => {
     (state) => state.clearVisible,
   );
 
-  const handleHoverEnter = (index: number) => {
-    setVisible(index);
+  const handleHoverEnter = (unitId: number) => {
+    setVisible(unitId);
+    // console.log(index);
   };
   const handleHoverLeave = () => {
     clearVisible();
@@ -82,25 +83,16 @@ export const ScrollUnits = () => {
               /* unit card container */
               <div
                 key={unit.id}
-                className="relative flex w-full flex-col items-center justify-between rounded-[10px] border border-[#33344F] transition-colors duration-500 hover:border-[#70738E] hover:bg-[#1A1D38] lg:h-[163px] lg:w-[130px]"
+                className="relative flex w-full flex-col items-center justify-center rounded-[10px] border border-[#33344F] transition-colors duration-500 hover:border-[#70738E] hover:bg-[#1A1D38] lg:h-20 lg:w-[130px]"
               >
                 {/* Unidades vendidas */}
                 {unit.vendido == "si" ? (
                   <div className="w-full">
-                    <div className="flex w-full items-center justify-center py-1 grayscale">
-                      <Badge className="absolute left-2 top-2 w-fit bg-muted-foreground/90 font-bold text-white hover:bg-muted-foreground/90">
-                        Reservado
-                      </Badge>
-                      <Image
-                        src={unit.raxo}
-                        alt="raxo"
-                        width={130}
-                        height={92}
-                        className="object-contain p-0 lg:h-full lg:w-full"
-                      />
-                    </div>
+                    <Badge className="absolute right-2 top-2 w-fit bg-muted-foreground/90 font-bold text-white grayscale hover:bg-muted-foreground/90">
+                      Reservado
+                    </Badge>
 
-                    <div className="flex w-full flex-col gap-0 px-3 pb-3 pt-2 text-left text-muted-foreground lg:pt-0">
+                    <div className="flex w-full flex-col gap-0 px-3 text-left text-muted-foreground">
                       <span className="text-10 pb-1 font-semibold uppercase">
                         Unidad {unit.id}
                       </span>
@@ -118,22 +110,12 @@ export const ScrollUnits = () => {
                   /* Unidades disponibles */
                   <div
                     /* hover para el depto selection */
-                    onMouseEnter={() => handleHoverEnter(index)}
+                    onMouseEnter={() => handleHoverEnter(unit.id)}
                     onMouseLeave={() => handleHoverLeave()}
                     onClick={() => handleClickUnit(unit.id)}
                     className="w-full cursor-pointer"
                   >
-                    <div className="flex w-full items-center justify-center py-1">
-                      <Image
-                        src={unit.raxo}
-                        alt="raxo"
-                        width={130}
-                        height={92}
-                        className="object-contain p-0 lg:h-full lg:w-full"
-                      />
-                    </div>
-
-                    <div className="flex w-full flex-col gap-0 px-3 pb-3 pt-2 text-left lg:pt-0">
+                    <div className="flex w-full flex-col gap-0 px-3 text-left">
                       <span className="text-10 pb-1 font-semibold uppercase text-muted-foreground">
                         Unidad {unit.id}
                       </span>

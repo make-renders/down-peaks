@@ -50,7 +50,7 @@ export default function Home() {
             </h1>
             <div className="w-full whitespace-normal break-words md:max-w-2xl">
               <span className="text-2xl md:text-5xl md:font-semibold">
-                Tu proyecto, en su mejor versión
+                Tu proyecto lote, en su mejor versión
               </span>
             </div>
 
